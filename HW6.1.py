@@ -1,13 +1,25 @@
-f_elem = int(input())
-step = int(input())
-quantity_num = int(input())
+# Определить индексы элементов массива (списка), значения которых принадлежат заданному диапазону (т.е. не меньше заданного минимума и не больше заданного максимума)
+# Напишите функцию
+# - Аргументы: список чисел и границы диапазона
+# - Возвращает: список индексов элементов (смотри условие)
+# Примеры/Тесты:
+# lst1 = [-5, 9, 0, 3, -1, -2, 1, 4, -2, 10, 2, 0, -9, 8, 10, -9, 0, -5, -5, 7]
+# <function_name>(lst1, 2, 10) -> [1, 3, 7, 9, 10, 13, 14, 19]
+# <function_name>(lst1, 2, 9) -> [1, 3, 7, 10, 13, 19]
+# <function_name>(lst1, 0, 6) -> [2, 3, 6, 7, 10, 11, 16]
+# (*) Усложнение. Для формирования списка внутри функции используйте Comprehension
+# (*) Усложнение. Функция возвращает список кортежей вида: индекс, значение
 
-def proggres_ar(f_elem, step, quantity_num):
-    ar_prog = f_elem
-    prog_array = [f_elem]
-    for i in range(quantity_num-1):
-        ar_prog += step
-        prog_array.append(ar_prog)
-    return prog_array
+list1 = [-5, 9, 0, 3, -1, -2, 1, 4, -2, 10, 2, 0, -9, 8, 10, -9, 0, -5, -5, 7]
+min_num = int(input())
+max_num = int(input())
 
-print(proggres_ar(f_elem, step, quantity_num))
+def min_max_list(list1, min_num, max_num):
+    lst2 = [(i, list1[i]) for i in range(len(list1)) if list1[i] >= min_num and list1[i] <= max_num] # Comprehension
+    # lst2 = []
+    # for i in range(len(list1)):
+    #     if list1[i] >= min_num and list1[i] <= max_num:
+    #         lst2.append((i, list1[i]))
+    return lst2
+
+print(min_max_list(list1, min_num, max_num))
